@@ -8,6 +8,6 @@ router.register('', views.TasksView, basename='tasks')
 
 
 urlpatterns = [
-    path("tasks", include(router.urls)),
+    path("tasks/", include(router.urls)),
     path("docs/", include_docs_urls(title="Tasks API"))
 ]
