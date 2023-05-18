@@ -3,6 +3,19 @@
 @tailwind utilities;
 
 body {
-  background: #202020;
-  color: white;
+  background-image: linear-gradient(135deg, #00B704, #505488, #2F3F80, #161569, #5A4894, #A950A1, #FFCAE9);
+  background-size: 500%;
+  animation: fanimado 10s infinite;
+}
+
+@keyframes fanimado{
+  0%{
+    background-position: 0% 50%;
+  }
+  50%{
+    background-position: 100% 50%;
+  }
+  100%{
+    background-position: 0% 50%;
+  }
 }
