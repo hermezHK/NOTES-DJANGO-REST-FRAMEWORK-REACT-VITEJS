@@ -1,16 +1,23 @@
-import axios from 'axios';
+/* eslint-disable no-undef */
 
+import axios from "axios";
+
+const URL =
+  process.env.NODE_ENV === "production"
+    ? import.meta.env.VITE_BACKEND_URL
+    : "http://localhost:8000";
+
+console.log(URL);
 const tasksApi = axios.create({
-   baseURL: 'http://127.0.0.1:8000/api/v1/tasks/',
-})
+  baseURL: `${URL}/tasks/api/v1/tasks/`,
+});
 
-/* request to backend 'GET', 'POST', 'PUT' */
-export const getALLTasks = () =>  tasksApi.get('');
+export const getAllTasks = () => tasksApi.get("/");
 
-export const getTask = (id) =>  tasksApi.get(`/${id}/`);
+export const getTask = (id) => tasksApi.get(`/${id}`);
 
-export const createTask = (task) => tasksApi.post('', task);
-
-export const deleteTask = (id) => tasksApi.delete(`/${id}`);
+export const createTask = (task) => tasksApi.post("/", task);
 
 export const updateTask = (id, task) => tasksApi.put(`/${id}/`, task);
+
+export const deleteTask = (id) => tasksApi.delete(`/${id}`);

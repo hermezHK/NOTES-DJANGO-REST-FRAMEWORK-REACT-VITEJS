@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-c5t(zopx#+=l75^+k&$g21a(zqcx-8)4%82y$d@&1u&u^)=tge
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost','web-production-104d.up.railway.app']
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -66,7 +66,7 @@ ROOT_URLCONF = 'api.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'client', 'dist')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -86,7 +86,9 @@ WSGI_APPLICATION = 'api.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    'default': dj_database_url.config(default="sqlite://db.sqlite3")
+    "default":
+    dj_database_url.config(default="sqlite:///" +
+                           os.path.join(BASE_DIR, "db.sqlite3"))
 }
 
 
@@ -126,6 +128,9 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATIC_ROOT =  os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'client', 'dist')
+]
 
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 # Default primary key field type
@@ -134,7 +139,7 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # cors authorization
-CORS_ALLOWED_ORIGINS = ['http://localhost:5173']
+CORS_ORIGIN_WHITELIST = ['http://localhost:5173', 'http://localhost:8000']
 
 
 #documentation api 
